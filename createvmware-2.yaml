@@ -1,0 +1,24 @@
+---
+- name: create vm 
+  hosts: localhost
+  connection: local
+  become: false
+  gather_facts: false
+   tasks:
+
+    - name: create VM
+      community.vmware.vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: false
+        datacenter: CBILAB
+        template: "{{ vm_template }}"
+        name: "{{ vm_name }}"
+        folder: MOBVM
+        state: powerdon
+        guest_id: "{{ vm_guestid }}"
+        disk:
+          - size_gb: "{{ vm_disk_gb }}"
+            type: "{{ vm_disk_type }}"
+            datastore: "{{ vm_disk_datastore }}"
