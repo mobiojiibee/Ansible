@@ -1,5 +1,5 @@
 ---
-- name: ESXi Info 
+- name: creationvm 
   hosts: localhost
   vars:
     vcenter_server: "172.20.1.220"
