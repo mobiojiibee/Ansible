@@ -6,12 +6,9 @@
     vcenter_username: "administrator@vsphere.local"
     vcenter_password: "Cbi@202104*"
     esxi_hostname: "hx-node1.lab.local"
-  
 tasks:
-
     - name: create VM
       community.vmware.vmware_guest:
-        template: "{{ vm_template }}"
         name: "{{ mobiotest }}"
         state: "{{ poweredoff }}"
         guest_id: "{{ ubuntu64Guest }}"
