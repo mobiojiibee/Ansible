@@ -25,23 +25,6 @@
             - config.product.apiVersion
             - overallStatus
   
-      register: gather_host_facts_result
-    - name: Extract update level info from option properties
-      set_fact:
-        update_level_info: "{{ item.value }}"
-      loop: "{{ gather_host_facts_result.ansible_facts.config.option }}"
-      when:
-        - item.key == 'Misc.HostAgentUpdateLevel'
+     
   
-    - name: The output of Product, Version, Build, Update info for ESXi
-      debug:
-        msg:
-          - "ESXi    : {{ esxi_hostname }}"
-          - "Product : {{ gather_host_facts_result.ansible_facts.config.product.name }}"
-          - "Version : {{ gather_host_facts_result.ansible_facts.config.product.version }}"
-          - "Build   : {{ gather_host_facts_result.ansible_facts.config.product.build }}"
-          - "Update  : {{ update_level_info }}"
-          - "Runtime : {{ gather_host_facts_result.ansible_facts.runtime.connectionState }}"
-          - "State : {{ gather_host_facts_result.ansible_facts.runtime.powerState }}"
-          - "Memory Size : {{ gather_host_facts_result.ansible_facts.hardware.memorySize}}"
-          - "Cpu Cores : {{ gather_host_facts_result.ansible_facts.hardware.cpuInfo.numCpuCores}}"
+    
